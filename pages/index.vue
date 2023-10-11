@@ -1,18 +1,14 @@
 <template>
-  <h1>Hi! Welcome {{ userStore.userName }}</h1>
-  <div v-if="!userStore.userId" class="line-login">
-    <h1 class="line-login-title">LINE Login</h1>
-    <button @click="loginWithLine" class="line-login-button">
-      Login with LINE
-    </button>
-  </div>
-  <nuxt-link
-    v-if="userStore.userId"
-    to="/bookingPage"
-    class="line-login-button"
-  >
-    <span
-      style="
+  <div class="space-top">
+    <h1>Hi! Welcome {{ userStore.userName }}</h1>
+    <div v-if="!userStore.userId" class="line-login">
+      <h1 class="line-login-title">LINE Login</h1>
+      <button @click="loginWithLine" class="line-login-button">
+        Login with LINE
+      </button>
+    </div>
+    <nuxt-link v-if="userStore.userId" to="/bookingPage" class="line-login-button">
+      <span style="
         background-color: #00c300;
         color: white;
         border: none;
@@ -20,11 +16,11 @@
         font-size: 18px;
         cursor: pointer;
         border-radius: 5px;
-      "
-    >
-      Book Cleaning Service
-    </span>
-  </nuxt-link>
+      ">
+        Book Cleaning Service
+      </span>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -68,9 +64,8 @@ export default {
 </script>
 
 <style scoped>
-body {
-  display: block !important;
-  margin: 0px !important;
+.space-top{
+  margin-top: 4rem;
 }
 .line-login {
   text-align: center;

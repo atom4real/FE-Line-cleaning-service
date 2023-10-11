@@ -9,8 +9,9 @@
     </nuxt-link>
   </div>
   <div>
-    <slot />
+    
   </div>
+  <slot />
 </template>
 
 <script>
@@ -26,12 +27,35 @@ export default {
 </script>
 
 <style scoped>
-body {
-  display: block !important;
-  margin: 0px !important;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: 400;
+	p{
+		text-align: justify;
+	}
+	body{
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+	header{
+		flex: 0 0 auto
+	}
+	footer{
+		margin-top: 5%;
+		flex: 0 0 auto
+	}
+
 }
 
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,6 +63,10 @@ body {
   color: white;
   padding: 15px 20px;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+div[slot] {
+  padding-top: 60px;  
 }
 
 .navbar a {
