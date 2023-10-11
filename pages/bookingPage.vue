@@ -8,13 +8,7 @@
       </div>
       <div class="form-group">
         <label for="phoneNumber">Phone Number:</label>
-        <input
-          type="tel"
-          v-model="phoneNumber"
-          id="phoneNumber"
-          required
-          maxlength="10"
-        />
+        <input type="tel" v-model="phoneNumber" id="phoneNumber" required maxlength="10" />
       </div>
       <div class="form-group">
         <label for="serviceType">Service Type:</label>
@@ -47,9 +41,11 @@
 </template>
 
 <script>
+import BookingService from "../services/BookingService"
 export default {
   data() {
     return {
+      records:[],
       name: "",
       phoneNumber: "",
       selectedServiceType: "standard",
@@ -60,6 +56,11 @@ export default {
     };
   },
   methods: {
+    fetchData() {
+      BookingService.getBooking().this(response => {
+        this.records = response.data
+      })
+    },
     submitBooking() {
       const bookingData = {
         name: this.name,
@@ -69,8 +70,11 @@ export default {
         selectedTime: this.selectedTime,
         location: this.location,
         additionalNotes: this.additionalNotes
-      };
 
+      };
+      BookingService.addBooking().this(response => {
+        bookingData = response.data;
+      })
       // Print the booking data as JSON
       console.log(JSON.stringify(bookingData, null, 2));
     }
