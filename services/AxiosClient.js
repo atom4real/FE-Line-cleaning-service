@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: process.env.NUXT_APP_BACKEND_URL,
+  baseURL: "http://localhost:8000",
   withCredentials: false,
   headers: {
     Accept: "application/json",

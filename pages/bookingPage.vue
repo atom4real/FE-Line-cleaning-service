@@ -11,15 +11,6 @@
         <input type="tel" v-model="phoneNumber" id="phoneNumber" required maxlength="10" />
       </div>
       <div class="form-group">
-        <label for="serviceType">Service Type:</label>
-        <select v-model="selectedServiceType" id="serviceType">
-          <option value="standard">Standard Cleaning</option>
-          <option value="deep">Deep Cleaning</option>
-          <option value="carpet">Carpet Cleaning</option>
-          <!-- Add more service options as needed -->
-        </select>
-      </div>
-      <div class="form-group">
         <label for="date">Date:</label>
         <input type="date" v-model="selectedDate" id="date" required />
       </div>
@@ -31,16 +22,13 @@
         <label for="location">Location:</label>
         <input type="text" v-model="location" id="location" maxlength="100" />
       </div>
-      <div class="form-group">
-        <label for="additionalNotes">Additional Notes:</label>
-        <textarea v-model="additionalNotes" id="additionalNotes"></textarea>
-      </div>
       <button type="submit">Book Now</button>
     </form>
   </div>
 </template>
 
 <script>
+import { useUserStore } from '../stores/index';
 import BookingService from "../services/BookingService"
 export default {
   data() {
@@ -48,12 +36,15 @@ export default {
       records:[],
       name: "",
       phoneNumber: "",
-      selectedServiceType: "standard",
       selectedDate: "",
       selectedTime: "",
       location: "",
-      additionalNotes: ""
     };
+  },
+  computed: {
+    userStore() {
+      return useUserStore(); // Create a reference to the user store
+    },
   },
   methods: {
     fetchData() {
@@ -61,22 +52,26 @@ export default {
         this.records = response.data
       })
     },
-    submitBooking() {
+    async submitBooking() {
       const bookingData = {
         name: this.name,
-        phoneNumber: this.phoneNumber,
-        selectedServiceType: this.selectedServiceType,
-        selectedDate: this.selectedDate,
-        selectedTime: this.selectedTime,
+        line_user_id: this.userStore.userId,
+        phone_number: this.phoneNumber,
+        bookDate: this.selectedDate,
+        bookTime: this.selectedTime,
         location: this.location,
-        additionalNotes: this.additionalNotes
 
       };
-      BookingService.addBooking().this(response => {
-        bookingData = response.data;
-      })
-      // Print the booking data as JSON
-      console.log(JSON.stringify(bookingData, null, 2));
+      console.log(bookingData);
+      try {
+        // Send the booking data to the backend API using Axios
+        const response = await BookingService.addBooking(bookingData);
+
+        // Print the response from the backend
+        console.log("Booking response:", response.data);
+      } catch (error) {
+        console.error("Error submitting booking:", error);
+      }
     }
   }
 };
