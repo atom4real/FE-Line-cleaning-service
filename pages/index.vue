@@ -28,14 +28,12 @@
 </template>
 
 <script>
-// Import the necessary function from the LINE LIFF SDK
 import { liff } from "@line/liff";
 import { useUserStore } from "../stores/index"; // Import the user store
 
 export default {
   data() {
     return {
-      // Add your data properties here
       isLogin: true,
     };
   },
@@ -56,7 +54,17 @@ export default {
           liff.login();
           this.isLogin = false;
         } else {
-          // If already logged in, redirect to the profile page
+          // If already logged in, get user profile
+          const profile = await liff.getProfile();
+
+          // Store user data in the user store
+          this.userStore.updateUserData(
+            profile.pictureUrl,
+            profile.displayName,
+            profile.userId,
+            profile.statusMessage
+          );
+
           this.$router.push("/profile");
         }
       } catch (error) {
@@ -66,6 +74,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .container {

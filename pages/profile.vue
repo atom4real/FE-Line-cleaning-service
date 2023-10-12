@@ -27,19 +27,6 @@
         this.$router.push('/');
       }
   
-      // Fetch the LINE profile if the user is logged in
-      const loadUserProfile = async () => {
-        try {
-          const profile = await liff.getProfile();
-          userStore.updateUserData(profile.pictureUrl, profile.displayName, profile.userId, profile.statusMessage);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-  
-      // Load the user profile when the component is created
-      loadUserProfile();
-  
       return {
         userStore,
       };
