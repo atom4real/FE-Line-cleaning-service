@@ -33,7 +33,7 @@ import BookingService from "../services/BookingService"
 export default {
   data() {
     return {
-      records:[],
+      records: [],
       name: "",
       phoneNumber: "",
       selectedDate: "",
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     fetchData() {
-      BookingService.getBooking().this(response => {
+      BookingService.getBooking().then(response => {
         this.records = response.data
       })
     },
@@ -70,8 +70,15 @@ export default {
         // Print the response from the backend
         console.log("Booking response:", response.data);
       } catch (error) {
-        console.error("Error submitting booking:", error);
+        if (error.response) {
+          console.error("Server responded with an error:", error.response.data);
+        } else if (error.request) {
+          console.error("No response received:", error.request);
+        } else {
+          console.error("Error setting up the request:", error.message);
+        }
       }
+
     }
   }
 };
