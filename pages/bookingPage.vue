@@ -87,7 +87,7 @@ export default {
 <style scoped>
 .booking-form {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 5% auto;
 }
 
 .form-group {

@@ -6,5 +6,8 @@ const BookingService = {
     addBooking(bookingData){
         return apiClient.post(`http://127.0.0.1:8000/bookings`,bookingData)
     },
+    googleAuth(){
+        return apiClient.get(`http://127.0.0.1:8000/auth/google`)
+    },
 }
 export default BookingService;
