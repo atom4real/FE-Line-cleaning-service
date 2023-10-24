@@ -51,16 +51,6 @@ export default {
       try {
         // Initialize the LINE LIFF SDK
         await liff.init({ liffId: "2001053759-qWnzRxdw" });
-        const newTab = window.open(
-          "http://localhost:8000/auth/google",
-          "_blank"
-        );
-
-        // Close the new tab after a specified time (e.g., 3 seconds)
-        setTimeout(function () {
-          newTab.close();
-        }, 1000);
-        // Check if the user is already logged in
         if (!liff.isLoggedIn()) {
           // If not logged in, initiate the LINE login process
           liff.login();
