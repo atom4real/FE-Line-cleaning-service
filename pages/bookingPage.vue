@@ -57,8 +57,8 @@ export default {
         name: this.name,
         line_user_id: this.userStore.userId,
         phone_number: this.phoneNumber,
-        bookDate: this.selectedDate,
-        bookTime: this.selectedTime,
+        startDate: this.selectedDate,
+        startTime: this.selectedTime,
         location: this.location,
 
       };
