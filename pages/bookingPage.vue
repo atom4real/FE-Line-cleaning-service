@@ -1,5 +1,6 @@
 <template>
-  <div class="booking-form">
+  <div class="container">
+    <div class="booking-form">
     <h1>Book Cleaning Service</h1>
     <form @submit.prevent="submitBooking">
       <div class="form-group">
@@ -20,6 +21,7 @@
       </div>
       <button type="submit">Book Now</button>
     </form>
+  </div>
   </div>
 </template>
 
@@ -73,6 +75,10 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  margin-top: 10%;
+}
+
 .booking-form {
   max-width: 400px;
   margin: 5% auto;
@@ -85,7 +91,7 @@ export default {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   text-align: left;
 }
 
@@ -126,4 +132,9 @@ h1 {
   color: #333;
 }
 
+@media (max-width: 768px) {
+  .container {
+    margin-top: 20%;
+  }
+}
 </style>
