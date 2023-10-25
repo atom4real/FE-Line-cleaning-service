@@ -76,10 +76,17 @@ export default {
 .booking-form {
   max-width: 400px;
   margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  text-align: center;
 }
 
 .form-group {
   margin-bottom: 20px;
+  text-align: left;
 }
 
 label {
@@ -87,16 +94,15 @@ label {
   font-weight: bold;
 }
 
-select,
-input[type="date"],
-input[type="time"],
-textarea,
 input[type="text"],
-input[type="tel"] {
-  width: 100%;
+input[type="tel"],
+input[type="datetime-local"],
+input[type="text"] {
+  width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 16px;
 }
 
 button {
@@ -107,9 +113,17 @@ button {
   font-size: 18px;
   cursor: pointer;
   border-radius: 5px;
+  width: 100%;
 }
 
 button:hover {
   background-color: #008a00;
 }
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
 </style>
