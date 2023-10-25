@@ -4,7 +4,7 @@
       <h1>Hi! Welcome {{ userStore.userName }}</h1>
       <div v-if="!userStore.userId" class="line-login">
         <h1 class="line-login-title">LINE Login</h1>
-        <button @click="loginWithLine" class="line-login-button">
+        <button @click.prevent="loginWithLine" class="line-login-button">
           Login with LINE
         </button>
       </div>

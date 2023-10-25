@@ -11,12 +11,8 @@
         <input type="tel" v-model="phoneNumber" id="phoneNumber" required maxlength="10" />
       </div>
       <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" v-model="selectedDate" id="date" required />
-      </div>
-      <div class="form-group">
-        <label for="time">Time:</label>
-        <input type="time" v-model="selectedTime" id="time" required />
+        <label for="datetime">Date and Time:</label>
+        <input type="datetime-local" v-model="dateTime" id="datetime" required />
       </div>
       <div class="form-group">
         <label for="location">Location:</label>
@@ -33,11 +29,9 @@ import BookingService from "../services/BookingService"
 export default {
   data() {
     return {
-      records: [],
       name: "",
       phoneNumber: "",
-      selectedDate: "",
-      selectedTime: "",
+      dateTime: "",
       location: "",
     };
   },
@@ -47,18 +41,12 @@ export default {
     },
   },
   methods: {
-    fetchData() {
-      BookingService.getBooking().then(response => {
-        this.records = response.data
-      })
-    },
     async submitBooking() {
       const bookingData = {
-        name: this.name,
+        title: this.name,
+        start: this.dateTime + ":00",
         line_user_id: this.userStore.userId,
         phone_number: this.phoneNumber,
-        startDate: this.selectedDate,
-        startTime: this.selectedTime,
         location: this.location,
 
       };
